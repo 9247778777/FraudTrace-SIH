@@ -1,1 +1,29 @@
-file:///C:/Users/Ismat%20Fatima/Downloads/FraudTrace_SIH26183_Website/FraudTrace_Website/index.html
+Victim Reports Wallet
+
+          ↓
+
+     FraudTrace API
+
+          ↓
+
+ Blockchain Explorer / Node
+
+          ↓
+
+ Transaction Collection
+
+          ↓
+
+ Graph & Pattern Analysis
+
+          ↓
+
+ Fraud Risk Engine
+
+          ↓
+
+ Risk Score + Wallet Network
+
+          ↓
+
+ Investigator Dashboard
