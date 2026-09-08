@@ -1,1 +1,1 @@
-https://sdmntprsoutheastus3.oaiusercontent.com/files/00000000-7a88-820c-b41a-13b0297e692e/raw?se=2026-09-08T05%3A34%3A07Z&sp=r&sv=2026-02-06&sr=b&scid=f73589bf-2c15-494c-ab05-bc8470344a70&skoid=f2622f62-3126-45cd-85e0-0bc840c3afdc&sktid=a48cca56-e6da-484e-a814-9c849652bcb3&skt=2026-09-08T01%3A40%3A50Z&ske=2026-09-09T01%3A40%3A50Z&sks=b&skv=2026-02-06&sig=KkGhgIE7HDT6e2xhNuT30pY1rixcVR2e0bmHJEuedxA%3D
+file:///C:/Users/Ismat%20Fatima/Downloads/FraudTrace_SIH26183_Website/FraudTrace_Website/index.html
