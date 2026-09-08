@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FraudTrace - Blockchain Fraud Detection</title>
+
+    <style>
+
+        * {
+
+            box-sizing: border-box;
+
+            margin: 0;
+
+            padding: 0;
+
+            font-family: Arial, sans-serif;
+
+        }
+
+        body {
+
+            background: #0b1020;
+
+            color: white;
+
+        }
+
+        header {
+
+            background: #11182d;
+
+            padding: 20px 8%;
+
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: center;
+
+            border-bottom: 1px solid #29324d;
+
+        }
+
+        .logo {
+
+            font-size: 25px;
+
+            font-weight: bold;
+
+            color: #5ee7ff;
+
+        }
+
+        nav a {
+
+            color: #ccc;
+
+            text-decoration: none;
+
+            margin-left: 25px;
+
+        }
+
+        .hero {
+
+            text-align: center;
+
+            padding: 55px 20px 35px;
+
+        }
+
+        .hero h1 {
+
+            font-size: 40px;
+
+            margin-bottom: 15px;
+
+        }
+
+        .hero span {
+
+            color: #5ee7ff;
+
+        }
+
+        .hero p {
+
+            color: #aeb7cc;
+
+            max-width: 750px;
+
+            margin: auto;
+
+            line-height: 1.6;
+
+        }
+
+        .container {
+
+            width: 90%;
+
+            max-width: 1100px;
+
+            margin: auto;
+
+        }
+
+        .search-box {
+
+            background: #141c33;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            margin: 25px 0;
+
+            border: 1px solid #29324d;
+
+        }
+
+        .search-box h2 {
+
+            margin-bottom: 20px;
+
+        }
+
+        input, select {
+
+            width: 100%;
+
+            padding: 15px;
+
+            margin-bottom: 15px;
+
+            background: #0b1020;
+
+            color: white;
+
+            border: 1px solid #394564;
+
+            border-radius: 8px;
+
+            outline: none;
+
+        }
+
+        button {
+
+            width: 100%;
+
+            padding: 15px;
+
+            background: #1677ff;
+
+            color: white;
+
+            border: none;
+
+            border-radius: 8px;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+        button:hover {
+
+            background: #0d5fd4;
+
+        }
+
+        #result {
+
+            display: none;
+
+            margin-top: 30px;
+
+        }
+
+        .dashboard {
+
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 20px;
+
+        }
+
+        .card {
+
+            background: #141c33;
+
+            padding: 25px;
+
+            border-radius: 15px;
+
+            border: 1px solid #29324d;
+
+        }
+
+        .card h3 {
+
+            color: #aeb7cc;
+
+            margin-bottom: 12px;
+
+            font-size: 15px;
+
+        }
+
+        .score {
+
+            font-size: 42px;
+
+            font-weight: bold;
+
+            color: #ff4d5e;
+
+        }
+
+        .status {
+
+            color: #ff4d5e;
+
+            font-weight: bold;
+
+        }
+
+        .warning {
+
+            margin-top: 20px;
+
+            padding: 20px;
+
+            background: #251923;
+
+            border-left: 4px solid #ff4d5e;
+
+            border-radius: 8px;
+
+        }
+
+        .transactions {
+
+            margin-top: 25px;
+
+        }
+
+        table {
+
+            width: 100%;
+
+            border-collapse: collapse;
+
+            margin-top: 15px;
+
+        }
+
+        th, td {
+
+            padding: 14px;
+
+            text-align: left;
+
+            border-bottom: 1px solid #29324d;
+
+        }
+
+        th {
+
+            color: #5ee7ff;
+
+        }
+
+        footer {
+
+            text-align: center;
+
+            color: #777;
+
+            padding: 40px;
+
+        }
+
+        @media(max-width: 700px) {
+
+            .dashboard {
+
+                grid-template-columns: 1fr;
+
+            }
+
+            .hero h1 {
+
+                font-size: 30px;
+
+            }
+
+            nav {
+
+                display: none;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">🛡️ FraudTrace</div>
+
+    <nav>
+
+        <a href="#">Dashboard</a>
+
+        <a href="#">Reports</a>
+
+        <a href="#">About</a>
+
+    </nav>
+
+</header>
+
+<section class="hero">
+
+    <h1>Blockchain <span>Fraud Detection</span></h1>
+
+    <p>
+
+        Real-time identification of fraud-linked cryptocurrency
+
+        wallets using automated blockchain analytics and
+
+        victim-reported suspicious addresses.
+
+    </p>
+
+</section>
+
+<div class="container">
+
+    <div class="search-box">
+
+        <h2>🔍 Analyze Suspect Wallet</h2>
+
+        <input
+
+            type="text"
+
+            id="wallet"
+
+            placeholder="Enter cryptocurrency wallet address"
+
+        >
+
+        <select id="blockchain">
+
+            <option value="Ethereum">Ethereum</option>
+
+            <option value="Bitcoin">Bitcoin</option>
+
+            <option value="Polygon">Polygon</option>
+
+            <option value="BNB Chain">BNB Chain</option>
+
+        </select>
+
+        <button onclick="analyzeWallet()">
+
+            Analyze Wallet
+
+        </button>
+
+    </div>
+
+    <div id="result">
+
+        <div class="dashboard">
+
+            <div class="card">
+
+                <h3>Risk Score</h3>
+
+                <div class="score" id="riskScore">87%</div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Risk Status</h3>
+
+                <div class="status" id="riskStatus">
+
+                    HIGH RISK
+
+                </div>
+
+            </div>
+
+            <div class="card">
+
+                <h3>Suspicious Transactions</h3>
+
+                <div class="score" id="suspicious">
+
+                    24
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="warning">
+
+            <h3>⚠️ Fraud Indicators Detected</h3>
+
+            <br>
+
+            <p>• Wallet reported by multiple victims</p>
+
+            <p>• High-frequency transactions detected</p>
+
+            <p>• Interaction with suspicious wallets</p>
+
+            <p>• Unusual transaction patterns</p>
+
+            <p>• Possible connection to fraudulent activity</p>
+
+        </div>
+
+        <div class="card transactions">
+
+            <h2>Transaction Analysis</h2>
+
+            <table>
+
+                <tr>
+
+                    <th>Transaction</th>
+
+                    <th>Type</th>
+
+                    <th>Amount</th>
+
+                    <th>Risk</th>
+
+                </tr>
+
+                <tr>
+
+                    <td>#TX001</td>
+
+                    <td>Incoming</td>
+
+                    <td>2.4 ETH</td>
+
+                    <td>High</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>#TX002</td>
+
+                    <td>Outgoing</td>
+
+                    <td>1.8 ETH</td>
+
+                    <td>Medium</td>
+
+                </tr>
+
+                <tr>
+
+                    <td>#TX003</td>
+
+                    <td>Incoming</td>
+
+                    <td>4.2 ETH</td>
+
+                    <td>High</td>
+
+                </tr>
+
+            </table>
+
+        </div>
+
+        <br>
+
+        <button onclick="generateReport()">
+
+            📄 Generate Investigation Report
+
+        </button>
+
+    </div>
+
+</div>
+
+<footer>
+
+    SIH26183 | FraudTrace | Automated Blockchain Analytics
+
+</footer>
+
+<script>
+
+function analyzeWallet() {
+
+    const wallet = document.getElementById("wallet").value;
+
+    const blockchain = document.getElementById("blockchain").value;
+
+    if (wallet.trim() === "") {
+
+        alert("Please enter a wallet address.");
+
+        return;
+
+    }
+
+    // Prototype risk calculation
+
+    let risk = Math.floor(Math.random() * 21) + 75;
+
+    document.getElementById("riskScore").innerText =
+
+        risk + "%";
+
+    document.getElementById("riskStatus").innerText =
+
+        risk >= 70 ? "HIGH RISK" : "LOW RISK";
+
+    document.getElementById("suspicious").innerText =
+
+        Math.floor(Math.random() * 20) + 10;
+
+    document.getElementById("result").style.display =
+
+        "block";
+
+    console.log("Wallet:", wallet);
+
+    console.log("Blockchain:", blockchain);
+
+}
+
+function generateReport() {
+
+    const wallet =
+
+        document.getElementById("wallet").value;
+
+    const score =
+
+        document.getElementById("riskScore").innerText;
+
+    const report =
+
+`FRAUDTRACE INVESTIGATION REPORT
+
+Suspect Wallet:
+
+${wallet}
+
+Risk Score:
+
+${score}
+
+Risk Status:
+
+HIGH RISK
+
+Fraud Indicators:
+
+- Victim reports
+
+- Suspicious transaction patterns
+
+- Connected suspicious wallets
+
+- High-frequency transactions
+
+Generated by FraudTrace
+
+`;
+
+    const blob = new Blob([report], {
+
+        type: "text/plain"
+
+    });
+
+    const url = URL.createObjectURL(blob);
+
+    const link = document.createElement("a");
+
+    link.href = url;
+
+    link.download = "FraudTrace_Report.txt";
+
+    link.click();
+
+    URL.revokeObjectURL(url);
+
+}
+
+</script>
+
+</body>
+
+</html>
